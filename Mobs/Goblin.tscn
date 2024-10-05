@@ -1,9 +1,14 @@
-[gd_scene load_steps=4 format=3 uid="uid://d0wt4xf8wxc8a"]
+[gd_scene load_steps=5 format=3 uid="uid://d0wt4xf8wxc8a"]
 
-[ext_resource type="Texture2D" uid="uid://dvu3syf5febqa" path="res://Sprites/Screenshot 2024-06-21 032356.png" id="1_aw8nu"]
 [ext_resource type="Script" path="res://Mobs/goblin.gd" id="1_c8ls7"]
+[ext_resource type="Texture2D" uid="uid://bnrp1ai6wdnwx" path="res://icon.svg" id="2_m4ys4"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4b6f0"]
+radius = 6.5
+height = 22.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_w7iev"]
+size = Vector2(46, 44)
 
 [node name="CharacterBody2D" type="CharacterBody2D"]
 script = ExtResource("1_c8ls7")
@@ -13,6 +18,15 @@ scale = Vector2(2, 2)
 shape = SubResource("CapsuleShape2D_4b6f0")
 
 [node name="Screenshot2024-06-21032356" type="Sprite2D" parent="CollisionShape2D"]
-position = Vector2(0, -2.98023e-08)
-scale = Vector2(0.0853436, 0.0853435)
-texture = ExtResource("1_aw8nu")
+position = Vector2(-9.53674e-07, -1.19209e-07)
+scale = Vector2(0.0631396, 0.0631396)
+texture = ExtResource("2_m4ys4")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-8, 0)
+shape = SubResource("RectangleShape2D_w7iev")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

@@ -1,0 +1,60 @@
+[gd_scene load_steps=2 format=3 uid="uid://bigrbtjpsgmi2"]
+
+[ext_resource type="PackedScene" uid="uid://dujqrf0dh76us" path="res://Tower/Patung.tscn" id="1_hd32e"]
+
+[node name="UI" type="CanvasLayer"]
+
+[node name="Panel" type="Panel" parent="."]
+offset_left = 136.0
+offset_top = 3.0
+offset_right = 624.0
+offset_bottom = 83.0
+
+[node name="FlowContainer" type="FlowContainer" parent="Panel"]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 6.0
+offset_right = 479.0
+offset_bottom = 74.0
+
+[node name="PatungPanel" parent="Panel" instance=ExtResource("1_hd32e")]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 7.0
+offset_right = 75.0
+offset_bottom = 74.0
+
+[node name="PatungPanel2" parent="Panel" instance=ExtResource("1_hd32e")]
+layout_mode = 0
+offset_left = 87.0
+offset_top = 8.0
+offset_right = 154.0
+offset_bottom = 75.0
+
+[node name="PatungPanel3" parent="Panel" instance=ExtResource("1_hd32e")]
+layout_mode = 0
+offset_left = 168.0
+offset_top = 8.0
+offset_right = 235.0
+offset_bottom = 75.0
+
+[node name="PatungPanel4" parent="Panel" instance=ExtResource("1_hd32e")]
+layout_mode = 0
+offset_left = 248.0
+offset_top = 8.0
+offset_right = 315.0
+offset_bottom = 75.0
+
+[node name="PatungPanel5" parent="Panel" instance=ExtResource("1_hd32e")]
+layout_mode = 0
+offset_left = 334.0
+offset_top = 8.0
+offset_right = 401.0
+offset_bottom = 75.0
+
+[node name="PatungPanel6" parent="Panel" instance=ExtResource("1_hd32e")]
+layout_mode = 0
+offset_left = 410.0
+offset_top = 8.0
+offset_right = 477.0
+offset_bottom = 75.0

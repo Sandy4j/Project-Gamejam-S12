@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://dujqrf0dh76us"]
+
+[ext_resource type="Script" path="res://Tower/patung.gd" id="1_ybkye"]
+[ext_resource type="Texture2D" uid="uid://cp0vo82m2f2c3" path="res://Sprites/goddess.png" id="2_pl3xm"]
+
+[node name="PatungPanel" type="Panel"]
+offset_right = 67.0
+offset_bottom = 67.0
+script = ExtResource("1_ybkye")
+
+[node name="Goddess" type="Sprite2D" parent="."]
+position = Vector2(33, 33)
+scale = Vector2(1.01563, 1.01563)
+texture = ExtResource("2_pl3xm")
+
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]

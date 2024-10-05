@@ -1,5 +1,4 @@
-extends CharacterBody2D
-
+extends Node2D
 
 # Kecepatan dan kesehatan musuh
 var speed = 100

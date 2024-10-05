@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://bvmu1wjqi52x2"]
+
+[ext_resource type="Script" path="res://Tower/tower_slow.gd" id="1_4mxfq"]
+[ext_resource type="Texture2D" uid="uid://cp0vo82m2f2c3" path="res://Sprites/goddess.png" id="2_qe2u4"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4xdv1"]
+size = Vector2(46, 58)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2u6lm"]
+size = Vector2(83, 58)
+
+[node name="TowerSlow" type="StaticBody2D"]
+script = ExtResource("1_4mxfq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(8, 4)
+shape = SubResource("RectangleShape2D_4xdv1")
+
+[node name="Area" type="Marker2D" parent="."]
+
+[node name="Goddess" type="Sprite2D" parent="."]
+position = Vector2(-2, 0)
+texture = ExtResource("2_qe2u4")
+
+[node name="Tower" type="Area2D" parent="."]
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Tower"]
+position = Vector2(17.5, 4)
+shape = SubResource("RectangleShape2D_2u6lm")
+
+[node name="Node" type="Node" parent="."]
