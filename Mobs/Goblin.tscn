@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://d0wt4xf8wxc8a"]
+
+[ext_resource type="Texture2D" uid="uid://dvu3syf5febqa" path="res://Sprites/Screenshot 2024-06-21 032356.png" id="1_aw8nu"]
+[ext_resource type="Script" path="res://Mobs/goblin.gd" id="1_c8ls7"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4b6f0"]
+
+[node name="CharacterBody2D" type="CharacterBody2D"]
+script = ExtResource("1_c8ls7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(2, 2)
+shape = SubResource("CapsuleShape2D_4b6f0")
+
+[node name="Screenshot2024-06-21032356" type="Sprite2D" parent="CollisionShape2D"]
+position = Vector2(0, -2.98023e-08)
+scale = Vector2(0.0853436, 0.0853435)
+texture = ExtResource("1_aw8nu")

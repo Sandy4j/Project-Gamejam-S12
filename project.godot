@@ -14,3 +14,11 @@ config/name="GameJam S12 TD"
 run/main_scene="res://Tiles/main.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://icon.svg"
+
+[global_group]
+
+tes=""
+
+[rendering]
+
+textures/light_projectors/filter=0
