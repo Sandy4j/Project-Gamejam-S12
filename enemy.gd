@@ -1,4 +1,4 @@
-extends Node2D
+xtends Node2D
 
 # Kecepatan dan kesehatan musuh
 var speed = 100

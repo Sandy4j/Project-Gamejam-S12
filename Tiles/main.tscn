@@ -1,9 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://benlk3fjvtut5"]
+[gd_scene load_steps=10 format=3 uid="uid://benlk3fjvtut5"]
 
 [ext_resource type="Texture2D" uid="uid://cgi7ld2n7ondv" path="res://TilesAsset/tiles.png" id="1_0edmp"]
 [ext_resource type="Script" path="res://Tiles/main.gd" id="1_oq6ft"]
+[ext_resource type="Script" path="res://Tiles/spawn_manager.gd" id="2_npqnd"]
 [ext_resource type="PackedScene" uid="uid://d0wt4xf8wxc8a" path="res://Mobs/Goblin.tscn" id="3_2unbh"]
-[ext_resource type="Texture2D" uid="uid://bnrp1ai6wdnwx" path="res://icon.svg" id="3_70v0m"]
 [ext_resource type="Script" path="res://Tiles/tile_map.gd" id="3_sk0uj"]
 [ext_resource type="PackedScene" uid="uid://bigrbtjpsgmi2" path="res://ui.tscn" id="5_gsq47"]
 
@@ -171,9 +171,6 @@ texture_region_size = Vector2i(32, 32)
 tile_size = Vector2i(32, 32)
 sources/3 = SubResource("TileSetAtlasSource_je3u6")
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_snptr"]
-size = Vector2(31.75, 31.25)
-
 [sub_resource type="Curve2D" id="Curve2D_v8qcn"]
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, 223, -110, 0, 0, 0, 0, -256, -110)
@@ -181,8 +178,24 @@ _data = {
 point_count = 2
 
 [node name="Main" type="Node2D"]
-position = Vector2(0, -1)
+position = Vector2(408, 192)
 script = ExtResource("1_oq6ft")
+
+[node name="SpawnManager" type="Node2D" parent="."]
+position = Vector2(240, -111)
+script = ExtResource("2_npqnd")
+enemy_scene = ExtResource("3_2unbh")
+
+[node name="Spawn1" type="Marker2D" parent="SpawnManager"]
+
+[node name="Spawn2" type="Marker2D" parent="SpawnManager"]
+position = Vector2(0, 63)
+
+[node name="Spawn3" type="Marker2D" parent="SpawnManager"]
+position = Vector2(0, 136)
+
+[node name="Spawn4" type="Marker2D" parent="SpawnManager"]
+position = Vector2(0, 208)
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_le30y")
@@ -197,20 +210,7 @@ zoom = Vector2(2.2, 2.2)
 
 [node name="PathSpawner" type="Node2D" parent="."]
 
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
-visible = false
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(208, -48)
-shape = SubResource("RectangleShape2D_snptr")
-
-[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D"]
-position = Vector2(209, -48)
-scale = Vector2(0.257813, 0.257813)
-texture = ExtResource("3_70v0m")
-
 [node name="Path2D2" type="Path2D" parent="."]
-visible = false
 curve = SubResource("Curve2D_v8qcn")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="Path2D2"]
@@ -219,17 +219,6 @@ rotation = 3.14159
 progress = 645.309
 
 [node name="CharacterBody2D" parent="Path2D2/PathFollow2D" instance=ExtResource("3_2unbh")]
-
-[node name="CharacterBody2D" parent="." instance=ExtResource("3_2unbh")]
-position = Vector2(210, -113)
-
-[node name="CharacterBody2D2" parent="." instance=ExtResource("3_2unbh")]
-position = Vector2(210, -50)
-
-[node name="CharacterBody2D3" parent="." instance=ExtResource("3_2unbh")]
-position = Vector2(211, 16)
-
-[node name="CharacterBody2D4" parent="." instance=ExtResource("3_2unbh")]
-position = Vector2(211, 81)
+visible = false
 
 [node name="UI" parent="." instance=ExtResource("5_gsq47")]
