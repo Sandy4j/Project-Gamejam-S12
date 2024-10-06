@@ -40,6 +40,7 @@ func die():
 
 func _on_area_2d_body_entered(body):
 	if body.is_in_group("patung"):
+		print("pantas")
 		is_touching_statue = true
 		damage_timer.start()
 

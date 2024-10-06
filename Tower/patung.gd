@@ -1,44 +1,71 @@
 extends Panel
 
 @onready var tower = preload("res://Tower/Patung.tscn")
-var	currfile
+@onready var tilemap = get_node_or_null("/root/Main/TileMap")  # Adjust this path
+var currfile
 
-var is_dragging = false  # Variabel untuk melacak apakah sedang dragging
-var tempTower = null  # Menyimpan tower yang sedang di-drag
+var is_dragging = false
+var tempTower = null
 
+# Atlas coordinates where the tower can be placed
+const VALID_ATLAS_COORD = Vector2i(4, 1)
+
+func _ready():
+	if tilemap == null:
+		push_error("TileMap not found. Please check the path in the script.")
+	else:
+		print_valid_position()
 
 func _on_gui_input(event):
-	# Jika mouse klik kiri ditekan dan tidak ada tower yang sedang di-drag
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
 		if not is_dragging and tempTower == null:
-			tempTower = tower.instantiate()  # Buat instance baru tower
+			tempTower = tower.instantiate()
 			add_child(tempTower)
 			tempTower.global_position = event.global_position
-			is_dragging = true  # Mulai dragging
+			is_dragging = true
 
-	# Jika mouse sedang bergerak dan tombol kiri masih ditekan (dragging)
 	elif event is InputEventMouseMotion and is_dragging:
 		if tempTower != null:
-			tempTower.global_position = event.global_position  # Update posisi tower
+			tempTower.global_position = event.global_position
 
-	# Jika mouse dilepas (selesai drag)
 	elif event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and not event.pressed:
 		if is_dragging:
 			if tempTower != null:
-				# Cek apakah posisi valid untuk meletakkan tower
 				if is_valid_position(tempTower.global_position):
 					print("Tower placed at:", tempTower.global_position)
-					tempTower = null  # Reset tempTower setelah diletakkan
+					tempTower = null
 				else:
-					# Jika tidak valid, hapus tower
 					tempTower.queue_free()
-					tempTower = null  # Reset tempTower setelah dihapus
+					tempTower = null
 					print("Invalid position, tower removed")
 			
-			is_dragging = false  # Akhiri dragging
+			is_dragging = false
 
-# Fungsi untuk memeriksa apakah posisi valid
 func is_valid_position(position):
-	# Tambahkan logika untuk memeriksa apakah posisi valid (misal di dalam grid)
-	# Sementara, ini hanya mengembalikan true
-	return true
+	if tilemap == null:
+		push_error("TileMap is null. Cannot check valid position.")
+		return false
+
+	var tile_pos = tilemap.local_to_map(tilemap.to_local(position))
+	var atlas_coord = tilemap.get_cell_atlas_coords(0, tile_pos)
+	print("Current atlas coordinates:", atlas_coord)  # Debug print
+	
+	return atlas_coord == VALID_ATLAS_COORD
+
+func get_world_position_from_atlas_coord(atlas_x, atlas_y):
+	if tilemap == null:
+		push_error("TileMap is null. Cannot get world position.")
+		return Vector2.ZERO
+
+	for x in range(tilemap.get_used_rect().size.x):
+		for y in range(tilemap.get_used_rect().size.y):
+			var pos = Vector2i(x, y)
+			if tilemap.get_cell_atlas_coords(0, pos) == Vector2i(atlas_x, atlas_y):
+				return tilemap.map_to_local(pos)
+	
+	push_error("Atlas coordinates not found in TileMap")
+	return Vector2.ZERO
+
+func print_valid_position():
+	var valid_world_pos = get_world_position_from_atlas_coord(VALID_ATLAS_COORD.x, VALID_ATLAS_COORD.y)
+	print("Valid position for tower placement (world coordinates):", valid_world_pos)

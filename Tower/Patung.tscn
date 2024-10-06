@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://cp0vo82m2f2c3" path="res://Sprites/goddess.png" id="2_pl3xm"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6nwew"]
-size = Vector2(77.7842, 72.8612)
+size = Vector2(64.9843, 63.9997)
 
 [node name="PatungPanel" type="Panel" groups=["patung"]]
 offset_right = 67.0
@@ -16,7 +16,7 @@ position = Vector2(33, 33)
 scale = Vector2(1.01563, 1.01563)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(0.492306, 0.984612)
+position = Vector2(0.984612, 0.492306)
 shape = SubResource("RectangleShape2D_6nwew")
 
 [node name="Goddess" type="Sprite2D" parent="."]
