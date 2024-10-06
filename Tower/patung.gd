@@ -1,14 +1,11 @@
 extends Panel
 
-@onready var tower = preload("res://Tower/Patung.tscn")
+@onready var tower = preload("res://Sprites/statue.tscn")
 @onready var tilemap = get_node_or_null("/root/Main/TileMap")  # Adjust this path
 var currfile
 
 var is_dragging = false
 var tempTower = null
-
-# Atlas coordinates where the tower can be placed
-const VALID_ATLAS_COORD = Vector2i(4, 1)
 
 func _ready():
 	if tilemap == null:
@@ -46,26 +43,13 @@ func is_valid_position(position):
 		push_error("TileMap is null. Cannot check valid position.")
 		return false
 
-	var tile_pos = tilemap.local_to_map(tilemap.to_local(position))
-	var atlas_coord = tilemap.get_cell_atlas_coords(0, tile_pos)
-	print("Current atlas coordinates:", atlas_coord)  # Debug print
-	
-	return atlas_coord == VALID_ATLAS_COORD
+	var area = Area2D.new()
+	area.position = position
+	add_child(area)
+	var overlap = area.get_overlapping_bodies()
+	area.queue_free()
 
-func get_world_position_from_atlas_coord(atlas_x, atlas_y):
-	if tilemap == null:
-		push_error("TileMap is null. Cannot get world position.")
-		return Vector2.ZERO
-
-	for x in range(tilemap.get_used_rect().size.x):
-		for y in range(tilemap.get_used_rect().size.y):
-			var pos = Vector2i(x, y)
-			if tilemap.get_cell_atlas_coords(0, pos) == Vector2i(atlas_x, atlas_y):
-				return tilemap.map_to_local(pos)
-	
-	push_error("Atlas coordinates not found in TileMap")
-	return Vector2.ZERO
+	return overlap.size() == 0
 
 func print_valid_position():
-	var valid_world_pos = get_world_position_from_atlas_coord(VALID_ATLAS_COORD.x, VALID_ATLAS_COORD.y)
-	print("Valid position for tower placement (world coordinates):", valid_world_pos)
+	print("Valid position for tower placement: Any position without collision")

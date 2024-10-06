@@ -5,10 +5,8 @@
 [node name="UI" type="CanvasLayer"]
 
 [node name="Panel" type="Panel" parent="."]
-offset_left = 136.0
-offset_top = 3.0
-offset_right = 624.0
-offset_bottom = 83.0
+offset_right = 488.0
+offset_bottom = 80.0
 
 [node name="FlowContainer" type="FlowContainer" parent="Panel"]
 layout_mode = 0
