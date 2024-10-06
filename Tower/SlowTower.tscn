@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://beo01uge7cnhf"]
+
+[ext_resource type="Script" path="res://Tower/slow_tower.gd" id="1_vxle8"]
+[ext_resource type="Texture2D" uid="uid://jpa4vv4w82ns" path="res://Sprites/slow tower.png" id="2_urej4"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6nwew"]
+size = Vector2(53.4151, 50.9536)
+
+[node name="PatungPanel" type="Panel" groups=["patung"]]
+offset_right = 55.0
+offset_bottom = 55.0
+script = ExtResource("1_vxle8")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(33, 33)
+scale = Vector2(1.01563, 1.01563)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-6.03075, -5.78459)
+shape = SubResource("RectangleShape2D_6nwew")
+
+[node name="Goddess" type="Sprite2D" parent="."]
+position = Vector2(28.1562, 28.1562)
+scale = Vector2(0.807617, 0.807617)
+texture = ExtResource("2_urej4")
+
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]

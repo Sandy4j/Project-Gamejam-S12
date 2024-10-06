@@ -6,7 +6,7 @@ var health = 100
 
 func _process(delta):
 	# Gerakkan musuh ke arah kanan
-	position.x -= speed * delta  # Bergerak ke kiri
+	position.x -= speed * delta + 10  # Bergerak ke kiri
 
 func take_damage(damage_amount):
 	# Kurangi kesehatan musuh

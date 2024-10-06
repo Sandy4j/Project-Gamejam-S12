@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=3 uid="uid://dubturr7n2vbt"]
+
+[ext_resource type="Script" path="res://Tower/patung.gd" id="1_tujob"]
+[ext_resource type="Texture2D" uid="uid://u5a3itpis6el" path="res://Sprites/mirror.png" id="2_jj1ip"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6nwew"]
+size = Vector2(56.6151, 55.1382)
+
+[node name="PatungPanel" type="Panel" groups=["patung"]]
+offset_left = 1.0
+offset_right = 56.0
+offset_bottom = 55.0
+script = ExtResource("1_tujob")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(33, 33)
+scale = Vector2(1.01563, 1.01563)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-5.90766, -5.90766)
+shape = SubResource("RectangleShape2D_6nwew")
+
+[node name="Goddess" type="Sprite2D" parent="."]
+position = Vector2(28, 27)
+scale = Vector2(1.625, 1.625)
+texture = ExtResource("2_jj1ip")
+
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]

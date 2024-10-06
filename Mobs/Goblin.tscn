@@ -4,27 +4,41 @@
 [ext_resource type="Texture2D" uid="uid://bnrp1ai6wdnwx" path="res://icon.svg" id="2_m4ys4"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4b6f0"]
+<<<<<<< Updated upstream
 radius = 5.0
 height = 10.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_w7iev"]
 size = Vector2(22, 21)
+=======
+radius = 2.5
+height = 10.0
 
-[node name="CharacterBody2D" type="CharacterBody2D"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_w7iev"]
+size = Vector2(29, 21)
+>>>>>>> Stashed changes
+
+[node name="CharacterBody2D" type="CharacterBody2D" groups=["Goblin"]]
 script = ExtResource("1_c8ls7")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 1.5708
 scale = Vector2(2, 2)
 shape = SubResource("CapsuleShape2D_4b6f0")
 
-[node name="Screenshot2024-06-21032356" type="Sprite2D" parent="CollisionShape2D"]
-position = Vector2(-9.53674e-07, -1.19209e-07)
-scale = Vector2(0.0631396, 0.0631396)
+[node name="Screenshot2024-06-21032356" type="Sprite2D" parent="."]
+position = Vector2(-1.90735e-06, -5)
+scale = Vector2(0.126279, 0.126279)
 texture = ExtResource("2_m4ys4")
 
 [node name="Area2D" type="Area2D" parent="."]
+position = Vector2(-47, -3)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+<<<<<<< Updated upstream
+=======
+position = Vector2(43.5, -1.5)
+>>>>>>> Stashed changes
 shape = SubResource("RectangleShape2D_w7iev")
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

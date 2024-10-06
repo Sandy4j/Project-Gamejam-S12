@@ -3,7 +3,7 @@ extends CharacterBody2D
 # Kecepatan dan kesehatan musuh
 var speed = 100
 var health = 100
-
+var direction = Vector2(-1, 0)  # Arah gerak musuh
 # Variabel untuk mengecek apakah sedang bersentuhan dengan patung
 var is_touching_statue = false
 

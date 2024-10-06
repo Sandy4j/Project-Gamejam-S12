@@ -3,14 +3,33 @@
 [ext_resource type="Script" path="res://Tower/patung.gd" id="1_ybkye"]
 [ext_resource type="Texture2D" uid="uid://cp0vo82m2f2c3" path="res://Sprites/goddess.png" id="2_pl3xm"]
 
+<<<<<<< Updated upstream
 [node name="PatungPanel" type="Panel"]
 offset_right = 67.0
 offset_bottom = 67.0
 script = ExtResource("1_ybkye")
 
-[node name="Goddess" type="Sprite2D" parent="."]
+=======
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6nwew"]
+size = Vector2(53.169, 54.1536)
+
+[node name="PatungPanel" type="Panel" groups=["patung"]]
+offset_right = 54.0
+offset_bottom = 54.0
+script = ExtResource("1_ybkye")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
 position = Vector2(33, 33)
 scale = Vector2(1.01563, 1.01563)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-5.90767, -5.41537)
+shape = SubResource("RectangleShape2D_6nwew")
+
+>>>>>>> Stashed changes
+[node name="Goddess" type="Sprite2D" parent="."]
+position = Vector2(25.7499, 25.7499)
+scale = Vector2(0.789065, 0.789065)
 texture = ExtResource("2_pl3xm")
 
 [connection signal="gui_input" from="." to="." method="_on_gui_input"]
